@@ -115,3 +115,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+[[ -s "/home/miguelsmuller/.gvm/scripts/gvm" ]] && source "/home/miguelsmuller/.gvm/scripts/gvm"
+. "$HOME/.cargo/env"
