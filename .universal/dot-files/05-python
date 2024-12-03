@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Python 3.10.5 /Library/Frameworks/Python.framework/Versions/3.10/bin/python3
+# Python 3.10.5 /usr/local/bin/python3
+# Python 3.9.16 /opt/homebre/bin/python3.9
+# Python 3.9.6  /usr/bin/python3
+
+alias py='python3'
+alias python='python3'
+
+py-env-delete() {
+    pyenv virtualenv-delete "$1"
+}
+
+py-env-create() {
+    pyenv virtualenv "$1" "$2"
+}
+
+alias pip-clear='pip uninstall -y -r <(pip freeze)'

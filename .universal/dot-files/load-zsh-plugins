@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# LOAD USING ZINIT
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+
+# LOAD USING OH-MY-ZSH
+plugins=(
+    git 
+    docker 
+    docker-compose 
+    vscode
+    history 
+    minikube 
+    python 
+    pyenv 
+    virtualenv
+    poetry
+    poetry-env
+    pip
+    gcloud
+    azure
+    aws
+)

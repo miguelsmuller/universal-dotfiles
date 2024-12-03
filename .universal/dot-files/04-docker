@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias dps='docker ps --all --format "table {{.ID}}\t{{.Names}} \t{{.Status}}\t{{.Ports}} \t{{.Image}}"'
+
+function dcd {
+    docker container rm -f $1
+}
+
+function dpj {
+    docker container ls --all --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}' | jq -C
+}

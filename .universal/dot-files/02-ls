@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# list including hidden
+alias lso='ls -A'
+# list in columns with properties and human readable
+alias ll='ls -lFhL'
+# list including hidden in columns with properties and human readable
+alias llo='ls -AlFhL'
+# list including hidden in columns with propertiesm, human readable and Sym Links
+alias llos='ls -la'
+# list including in columns with propertiesm, human readable and Sym Links
+alias lls='ls -l'
+
+alias prjs="cd ~/Documents/Projetos-Globo/"
+
+function reload-env {
+    if [[ -z "${1}" ]]
+    then
+        >&2 echo "== name attr has not been set \n"
+        return 0
+    fi
+
+    echo "== deactivating Env \n" && \
+    pyenv deactivate && \
+    echo "== deleting Env \n" && \
+    pyenv virtualenv-delete -f $1 && \
+    echo "== recreating Env \n" && \
+    pyenv virtualenv 3.7.12 $1 && \
+    echo "== activating Env \n" && \
+    pyenv activate $1
+}
