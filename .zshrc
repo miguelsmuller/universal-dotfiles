@@ -48,9 +48,10 @@ export NVM_DIR="$HOME/.nvm"
 
 
 ### START DOT-FILES
-UNIVERSAL=.universal
-UNIVERSAL_GIT=.universal-bare-repo
+export UNIVERSAL=.universal
+export UNIVERSAL_GIT=.universal-bare-repo
 alias config="/usr/bin/git --git-dir=$HOME/$UNIVERSAL_GIT --work-tree=$HOME"
+alias config-update="/bin/bash $HOME/$UNIVERSAL/scripts/update_gitconfig_local.sh"
 
 
 # [[ -f "$HOME/$UNIVERSAL/dot-files/load-zinit" ]] && source "$HOME/$UNIVERSAL/dot-files/load-zinit"

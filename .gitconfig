@@ -1,7 +1,8 @@
+[include]
+    path = ~/.gitconfig.local
 [user]
     email = miguelsmuller@users.noreply.github.com
     name = Miguel Muller
-	signingkey = 0FB4023188098C79
 [core]
     # editor = code --wait
     autocrlf = input
@@ -89,5 +90,3 @@
 	pretty = oneline
 [submodule]
 	recurse = true
-[commit]
-	gpgsign = true
