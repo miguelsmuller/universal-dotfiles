@@ -47,6 +47,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+### START GVM LOAD - GO VERSION MANAGER
+[[ -s "/home/migue/.gvm/scripts/gvm" ]] && source "/home/migue/.gvm/scripts/gvm"
+
+
 ### START DOT-FILES
 export UNIVERSAL=.universal
 export UNIVERSAL_GIT=.universal-bare-repo
