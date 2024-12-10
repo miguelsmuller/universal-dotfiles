@@ -1,0 +1,5 @@
+.venv
+.python-version
+
+# VSCode Plugin
+.out-of-code-insights

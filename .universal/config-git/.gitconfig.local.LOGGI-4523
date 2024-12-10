@@ -2,3 +2,5 @@
     signingkey = 0FB4023188098C79
 [commit]
 	gpgsign = true
+[core]
+	excludesfile = /home/miguel-neto/.gitignore_global
