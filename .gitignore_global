@@ -1,5 +1,8 @@
 .venv
 .python-version
 
+# Personal Directory
+.uncommit
+
 # VSCode Plugin
 .out-of-code-insights
