@@ -1,12 +1,10 @@
-[include]
-    path = ~/.gitconfig.local
 [user]
     email = miguelsmuller@users.noreply.github.com
     name = Miguel Muller
 [core]
     editor = code --wait
     autocrlf = input
-	excludesfile = /home/miguel-neto/.gitignore_global
+	excludesfile = /Users/miguelmuller/.gitignore_global
     #pager = cat
 [pager]
     branch = false
@@ -51,7 +49,7 @@
     undo = checkout -- 
 
     # [history] log - short version(hash, message)
-    ls = log --oneline -n 10
+    ls = log --oneline
     # [history] log - short version(hash, time, author, message)
     ll = log --pretty=format:'%Cred%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30
     # [history] show history in tree
@@ -85,8 +83,5 @@
     update = rebase -i main
 [pager]
 	branch = false
-    log = true
 [format]
 	pretty = oneline
-[submodule]
-	recurse = true
