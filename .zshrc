@@ -71,3 +71,4 @@ alias config-update="/bin/bash $HOME/$UNIVERSAL/scripts/update_gitconfig_local.s
 [[ -f ~/${UNIVERSAL}/dot-files/03-git ]] && source ~/${UNIVERSAL}/dot-files/03-git
 [[ -f ~/${UNIVERSAL}/dot-files/04-docker ]] && source ~/${UNIVERSAL}/dot-files/04-docker
 [[ -f ~/${UNIVERSAL}/dot-files/05-python ]] && source ~/${UNIVERSAL}/dot-files/05-python
+[[ -f ~/${UNIVERSAL}/dot-files/work-loggi ]] && source ~/${UNIVERSAL}/dot-files/work-loggi

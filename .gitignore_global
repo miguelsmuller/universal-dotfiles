@@ -6,3 +6,6 @@
 
 # VSCode Plugin
 .out-of-code-insights
+
+docker-compose.local.yml
+docker-compose.local.yaml

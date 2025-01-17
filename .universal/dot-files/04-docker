@@ -9,3 +9,42 @@ function dcd {
 function dpj {
     docker container ls --all --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}' | jq -C
 }
+
+dc_up() {
+    BOLD="\033[1m"
+    NORMAL="\033[0m"
+
+    if [ -f docker-compose.yml ]; then
+        BASE="docker-compose.yml"
+    elif [ -f docker-compose.yaml ]; then
+        BASE="docker-compose.yaml"
+    else
+        echo "Arquivo de compose (docker-compose.yml ou docker-compose.yaml) não encontrado!"
+        return 1
+    fi
+
+    if [ -f docker-compose.local.yml ]; then
+        LOCAL="docker-compose.local.yml"
+    elif [ -f docker-compose.local.yaml ]; then
+        LOCAL="docker-compose.local.yaml"
+    else
+        echo "Arquivo de override local (docker-compose.local.yml ou docker-compose.local.yaml) não encontrado!"
+        return 1
+    fi
+
+    cmd="docker compose -f ${BASE} -f ${LOCAL} up -d --force-recreate --remove-orphans --build $@"
+
+    echo -e "\n${BOLD}$cmd${NORMAL}\n"
+    eval "$cmd"
+}
+
+
+dc_down() {
+    BOLD="\033[1m"
+    NORMAL="\033[0m"
+    
+    cmd="docker compose down --volumes --remove-orphans $@"
+    
+    echo -e "\n${BOLD}$cmd${NORMAL}\n"
+    eval "$cmd"
+}
