@@ -32,7 +32,7 @@ dc_up() {
         return 1
     fi
 
-    cmd="docker compose -f ${BASE} -f ${LOCAL} up -d --force-recreate --remove-orphans --build $@"
+    cmd="docker compose $@ -f ${BASE} -f ${LOCAL} up -d --force-recreate --remove-orphans --build"
 
     echo -e "\n${BOLD}$cmd${NORMAL}\n"
     eval "$cmd"

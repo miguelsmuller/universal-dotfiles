@@ -80,6 +80,7 @@ pytestmark
 pyinstrument
 pytorch
 pytz
+pgadmin
 rdflib
 rdfs
 recomendation
