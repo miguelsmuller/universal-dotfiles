@@ -47,10 +47,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-### START GVM LOAD - GO VERSION MANAGER
-[[ -s "/home/migue/.gvm/scripts/gvm" ]] && source "/home/migue/.gvm/scripts/gvm"
-
-
 ### START DOT-FILES
 export UNIVERSAL=.universal
 export UNIVERSAL_GIT=.universal-bare-repo
@@ -65,10 +61,13 @@ alias config-update="/bin/bash $HOME/$UNIVERSAL/scripts/update_gitconfig_local.s
 [[ -f ~/${UNIVERSAL}/dot-files/load-oh-my-zsh ]] && source ~/${UNIVERSAL}/dot-files/load-oh-my-zsh
 
 
-[[ -f ~/${UNIVERSAL}/dot-files/00-env ]]  && source ~/${UNIVERSAL}/dot-files/00-env
-[[ -f ~/${UNIVERSAL}/dot-files/01-system ]]&& source ~/${UNIVERSAL}/dot-files/01-system
-[[ -f ~/${UNIVERSAL}/dot-files/02-ls ]] && source ~/${UNIVERSAL}/dot-files/02-ls
-[[ -f ~/${UNIVERSAL}/dot-files/03-git ]] && source ~/${UNIVERSAL}/dot-files/03-git
-[[ -f ~/${UNIVERSAL}/dot-files/04-docker ]] && source ~/${UNIVERSAL}/dot-files/04-docker
-[[ -f ~/${UNIVERSAL}/dot-files/05-python ]] && source ~/${UNIVERSAL}/dot-files/05-python
+[[ -f ~/${UNIVERSAL}/dot-files/env-public ]]  && source ~/${UNIVERSAL}/dot-files/env-public
+[[ -f ~/${UNIVERSAL}/dot-files/env-private ]]  && source ~/${UNIVERSAL}/dot-files/env-private
+[[ -f ~/${UNIVERSAL}/dot-files/system ]]&& source ~/${UNIVERSAL}/dot-files/system
+[[ -f ~/${UNIVERSAL}/dot-files/git ]] && source ~/${UNIVERSAL}/dot-files/git
+[[ -f ~/${UNIVERSAL}/dot-files/docker ]] && source ~/${UNIVERSAL}/dot-files/docker
+[[ -f ~/${UNIVERSAL}/dot-files/python ]] && source ~/${UNIVERSAL}/dot-files/python
+[[ -f ~/${UNIVERSAL}/dot-files/java ]] && source ~/${UNIVERSAL}/dot-files/java
+[[ -f ~/${UNIVERSAL}/dot-files/go ]] && source ~/${UNIVERSAL}/dot-files/go
 [[ -f ~/${UNIVERSAL}/dot-files/work-loggi ]] && source ~/${UNIVERSAL}/dot-files/work-loggi
+

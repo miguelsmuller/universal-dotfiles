@@ -22,6 +22,7 @@ decrescimo
 doesnt
 drivername
 dropoff
+enviroment
 facede
 fakeloggikey
 fakeloggikey123
@@ -63,6 +64,8 @@ packtrack
 padrao
 paymethods
 periodo
+pgadmin
+phoen
 postbacksecret
 postgresql
 preco
@@ -73,14 +76,13 @@ pycache
 pycase
 pydantic
 pyenv
+pyinstrument
 pylance
 pylint
 pytest
 pytestmark
-pyinstrument
 pytorch
 pytz
-pgadmin
 rdflib
 rdfs
 recomendation
@@ -93,8 +95,11 @@ rgba
 rpcerror
 rudderstack
 samcli
+scaffolder
+Scaffolder
 sematica
 shotener
+sonarqube
 sqlalchemy
 stackable
 starlette

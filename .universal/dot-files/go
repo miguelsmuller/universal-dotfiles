@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+[[ -s "/home/migue/.gvm/scripts/gvm" ]] && source "/home/migue/.gvm/scripts/gvm"

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 alias dps='docker ps --all --format "table {{.ID}}\t{{.Names}} \t{{.Status}}\t{{.Ports}} \t{{.Image}}"'
+alias dpss="docker ps --all --format '{{.ID}}%{{.Names}}%{{.CreatedAt}}%{{.Status}}%{{.Ports}}' | sort -k2 | column -t -s $'%'"
+
 
 function dcd {
     docker container rm -f $1

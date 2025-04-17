@@ -1,5 +1,30 @@
 #!/bin/bash
 
+alias reload='exec "$SHELL"'
+alias cls='clear'
+
+alias npm-list='npm ls -g --depth 0'
+alias pip-list='pip list'
+
+
+gsk() {
+  aws eks \
+    --region us-east-1 \
+    update-kubeconfig \
+    --name stg-eks-03 \
+    --profile platform-stg
+}
+
+
+gpk() {
+  aws eks \
+    --region us-east-1 \
+    update-kubeconfig \
+    --name prod-eks-04 \
+    --profile platform-prod-eks
+}
+
+
 # list including hidden
 alias lso='ls -A'
 # list in columns with properties and human readable

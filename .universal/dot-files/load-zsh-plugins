@@ -10,16 +10,20 @@ zinit light-mode for \
 zinit light zdharma/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
+# zinit light Aloxaf/fzf-tab
+
 
 
 # LOAD USING OH-MY-ZSH
 plugins=(
     git 
+    vscode 
     docker 
     docker-compose 
     vscode
     history 
-    minikube 
+    kubectl  
+    kubectx 
     python 
     pyenv 
     virtualenv
@@ -29,4 +33,9 @@ plugins=(
     gcloud
     azure
     aws
+    golang
+    gradle
+    postgres
+    sdk
+    ubuntu
 )

@@ -3,3 +3,5 @@
 alias up='docker compose -f docker-compose.yml -f docker-compose.local.yml up -d --force-recreate --remove-orphans'
 
 alias down='docker compose down --volumes --remove-orphans'
+
+
