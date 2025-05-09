@@ -5,3 +5,4 @@
 #ENV=qa
 
 
+COMPOSE_BAKE=true

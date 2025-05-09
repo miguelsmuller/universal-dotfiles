@@ -13,7 +13,7 @@
 [init]
 	defaultBranch = main
 [push]
-    autoSetupRemote = true
+	autoSetupRemote = true
 [alias]
     # [system] who am I? IT'S A ME, MARIO! :)
     me = config user.name
