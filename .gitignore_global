@@ -9,3 +9,6 @@
 
 docker-compose.local.yml
 docker-compose.local.yaml
+
+
+~/.universal/dot-files/env-private

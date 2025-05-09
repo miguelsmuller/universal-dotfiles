@@ -1,3 +1,12 @@
 #!/bin/bash
 
 alias g=git
+
+# Marca um arquivo para não ter suas alterações rastreadas
+alias gitu='git update-index --assume-unchanged'
+
+# Volta a rastrear as alterações em um arquivo
+alias gitt='git update-index --no-assume-unchanged'
+
+# Lista todos os arquivos com assume-unchanged ativado
+alias gitul='git ls-files -v | grep "^h"'
