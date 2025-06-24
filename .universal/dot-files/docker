@@ -1,15 +1,36 @@
 #!/bin/bash
 
-alias dps='docker ps --all --format "table {{.ID}}\t{{.Names}} \t{{.Status}}\t{{.Ports}} \t{{.Image}}"'
-alias dpss="docker ps --all --format '{{.ID}}%{{.Names}}%{{.CreatedAt}}%{{.Status}}%{{.Ports}}' | sort -k2 | column -t -s $'%'"
+dpsx() {
+    local sort_col=0
+
+    case "$1" in
+        id)     sort_col=1 ;;
+        names)   sort_col=2 ;;
+        status) sort_col=3 ;;
+        ports)  sort_col=4 ;;
+        *)      sort_col=0 ;;
+    esac
+
+    {
+        echo "ID%NAMES%STATUS%PORTS"
+        docker ps --all --format '{{.ID}}%{{.Names}}%{{.Status}}%{{.Ports}}'
+    } | {
+        if [[ $sort_col -gt 0 ]]; then
+            head -n 1 && tail -n +2 | sort -k"$sort_col"
+        else
+            cat
+        fi
+    } | column -t -s $'%'
+}
+
+
+function dpj {
+    docker container ls --all --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}' | jq -C
+}
 
 
 function dcd {
     docker container rm -f $1
-}
-
-function dpj {
-    docker container ls --all --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}' | jq -C
 }
 
 dc_up() {
