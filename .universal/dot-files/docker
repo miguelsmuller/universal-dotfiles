@@ -71,3 +71,7 @@ dc_down() {
     echo -e "\n${BOLD}$cmd${NORMAL}\n"
     eval "$cmd"
 }
+ 
+alias gpt='docker exec -i gpt-cli sgpt'
+
+

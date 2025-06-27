@@ -1,15 +1,15 @@
 [include]
-    path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [user]
-    email = miguelsmuller@users.noreply.github.com
-    name = Miguel Muller
+	email = miguelsmuller@users.noreply.github.com
+	name = Miguel Muller
 [core]
-    editor = code --wait
-    autocrlf = input
+	editor = vim
+	autocrlf = input
 	excludesfile = /home/miguel-neto/.gitignore_global
-    #pager = cat
+	#pager = cat
 [pager]
-    branch = false
+	branch = false
 [init]
 	defaultBranch = main
 [push]
