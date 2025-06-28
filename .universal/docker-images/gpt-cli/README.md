@@ -18,18 +18,17 @@ export OPENAI_API_KEY="sua-chave-aqui"
 e use o comando:
 
 ```
-docker run --rm \
-  --volume gpt-cache:/tmp/shell_gpt \
-  --env OPENAI_API_KEY \
-  gpt-cli "who is bill gates"
-```
-
-ou deixando ele como daemon
-
-```
-docker run -d --name gpt-cli-daemon \
+docker run -d --name gpt-cli -it \
   --volume gpt-cache:/tmp/shell_gpt \
   --env OPENAI_API_KEY \
   gpt-cli tail -f /dev/null
 ```
 
+
+# sugestão de uso
+
+config diff main \
+| gpt "gere uma mensagem de commit para as alterações recebidas" \
+#| sed '1,3d' \
+| tee /dev/tty \
+#| config commit -F -

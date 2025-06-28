@@ -55,7 +55,9 @@ alias config-update="/bin/bash $HOME/$UNIVERSAL/scripts/update_gitconfig_local.s
 [[ -f ~/${UNIVERSAL}/dot-files/python ]] && source ~/${UNIVERSAL}/dot-files/python
 [[ -f ~/${UNIVERSAL}/dot-files/java ]] && source ~/${UNIVERSAL}/dot-files/java
 [[ -f ~/${UNIVERSAL}/dot-files/go ]] && source ~/${UNIVERSAL}/dot-files/go
+[[ -f ~/${UNIVERSAL}/dot-files/kubernets ]] && source ~/${UNIVERSAL}/dot-files/kubernets
 [[ -f ~/${UNIVERSAL}/dot-files/work-loggi ]] && source ~/${UNIVERSAL}/dot-files/work-loggi
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

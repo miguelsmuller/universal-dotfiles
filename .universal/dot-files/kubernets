@@ -1,0 +1,28 @@
+#!/bin/bash
+
+alias klp='aws configure list-profiles'
+
+cluster=("stg-eks-03"  "prod-eks-04")
+
+klc() {
+  for item in "${cluster[@]}"; do
+    echo "$item"
+  done
+}
+
+kgc() {
+  local cluster_name="$1"
+  local profile_name="$2"
+
+  if [[ -z "$cluster_name" || -z "$profile_name" ]]; then
+    echo "Uso: gkc <nome-do-cluster> <nome-do-profile>"
+    return 1
+  fi
+
+  aws eks \
+    --region us-east-1 \
+    update-kubeconfig \
+    --name "$cluster_name" \
+    --profile "$profile_name"
+}
+

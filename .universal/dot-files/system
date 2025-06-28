@@ -1,55 +1,33 @@
 #!/bin/bash
 
-# Inicia tmux automaticamente se não estiver dentro de uma sessão tmux
-# Inicia ou conecta ao tmux automaticamente, evitando sessões duplicadas
-if command -v tmux >/dev/null 2>&1; then
-  if [ -z "$TMUX" ]; then
-    tmux has-session -t default 2>/dev/null
-    if [ $? -eq 0 ]; then
-      exec tmux attach-session -t default
-    else
-      exec tmux new-session -s default
-    fi
-  fi
-fi
-
+#
 alias reload='exec "$SHELL"'
+
+#
 alias cls='clear'
 
+#
 alias npm-list='npm ls -g --depth 0'
-alias pip-list='pip list'
-
-
-gsk() {
-  aws eks \
-    --region us-east-1 \
-    update-kubeconfig \
-    --name stg-eks-03 \
-    --profile platform-stg
-}
-
-
-gpk() {
-  aws eks \
-    --region us-east-1 \
-    update-kubeconfig \
-    --name prod-eks-04 \
-    --profile platform-prod-eks
-}
-
 
 # list including hidden
 alias lso='ls -A'
+
 # list in columns with properties and human readable
 alias ll='ls -lFhL'
+
 # list including hidden in columns with properties and human readable
 alias llo='ls -AlFhL'
+
 # list including hidden in columns with propertiesm, human readable and Sym Links
 alias llos='ls -la'
+
 # list including in columns with propertiesm, human readable and Sym Links
 alias lls='ls -l'
 
-alias prjs="cd ~/Documents/Projetos-Globo/"
+
+##########################
+# Experimental Reload Env
+##########################
 
 function reload-env {
     if [[ -z "${1}" ]]
@@ -67,3 +45,23 @@ function reload-env {
     echo "== activating Env \n" && \
     pyenv activate $1
 }
+
+
+######################
+# Tmux Initialization
+######################
+
+# Inicia tmux automaticamente se não estiver dentro de uma sessão tmux
+# Inicia ou conecta ao tmux automaticamente, evitando sessões duplicadas
+# if command -v tmux >/dev/null 2>&1; then
+#  if [ -z "$TMUX" ]; then
+#    tmux has-session -t default 2>/dev/null
+#    if [ $? -eq 0 ]; then
+#      exec tmux attach-session -t default
+#    else
+#      exec tmux new-session -s default
+#    fi
+#  fi
+#fi
+
+

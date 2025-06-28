@@ -22,3 +22,5 @@ py-env-create() {
 }
 
 alias pip-clear='pip uninstall -y -r <(pip freeze)'
+
+alias pip-list='pip list'
