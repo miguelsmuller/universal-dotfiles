@@ -36,7 +36,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ### START DOT-FILES
 export UNIVERSAL=.universal
 export UNIVERSAL_GIT=.universal-bare-repo
-alias config="/usr/bin/git --git-dir=$HOME/$UNIVERSAL_GIT --work-tree=$HOME"
+
+config() {
+  command git --git-dir="$HOME/$UNIVERSAL_GIT" --work-tree="$HOME" "$@"
+}
 alias config-update="/bin/bash $HOME/$UNIVERSAL/scripts/update_gitconfig_local.sh"
 
 
