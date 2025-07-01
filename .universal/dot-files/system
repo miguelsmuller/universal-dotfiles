@@ -24,6 +24,9 @@ alias llos='ls -la'
 # list including in columns with propertiesm, human readable and Sym Links
 alias lls='ls -l'
 
+ # Alias vim to nvim for convenience
+alias vim='nvim'
+
 
 ##########################
 # Experimental Reload Env
