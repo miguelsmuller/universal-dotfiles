@@ -1,3 +1,0 @@
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = /home/miguelsmuller/.config/nvim
