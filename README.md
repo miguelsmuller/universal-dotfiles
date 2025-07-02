@@ -1,191 +1,161 @@
 # Dotfiles
 
-## 📄 **Descrição**
+## 📄 Descrição
 
-Os **dotfiles** são arquivos de configuração que personalizam o comportamento de shells, editores de texto, Git, e outras ferramentas utilizadas no terminal. Ao versioná-los com Git, consigo manter um ambiente de desenvolvimento consistente e facilmente replicável em múltiplas máquinas.
+Os **dotfiles** são arquivos de configuração que personalizam shells, editores, Git e outras ferramentas de terminal. Mantê‑los versionados em um repositório Git garante que meu ambiente de desenvolvimento seja idêntico em qualquer máquina com apenas alguns comandos.
 
+## 📚 Contexto
 
-## 📚 **Contexto**
+Utilizo um **repositório *bare*** localizado em `~/.universal-bare-repo`. Diferentemente de um clone normal, o repositório *bare* não possui cópia de trabalho; ele rastreia diretamente os arquivos do meu **work tree** (`$HOME`). Os arquivos em si vivem dentro da pasta `~/.universal/`, organizada por tipo.
 
-Criamos uma estrutura de gerenciamento de **dotfiles** (arquivos de configuração) utilizando um **repositório bare do Git**. Este repositório gerencia os arquivos diretamente em uma pasta chamada `.universal` no diretório home.
+## 🏗️ Estrutura
 
----
-
-#### 🏗️ **Estrutura Atual**
-
-A estrutura atual do projeto é a seguinte:
-
-```
+```text
 ~/
-├── .universal-bare-repo/     # Repositório bare
+├── .universal-bare-repo/     # Repositório Git bare
 ├── .universal/
-│   ├── dictionaries/         # Arquivos de dicionário personalizados
-│   └── dot-files/            # Scripts e configurações do shell
+│   ├── dictionaries/         # Dicionários personalizados
+│   └── dot-files/            # Scripts e configurações de shell
+├── .config/
+│   └── nvim/                 # Configuração do NVim
+└── *                         # Demais arquivos do $HOME
 ```
 
-- **`.universal-files-bare-repo`**: Contém o repositório bare do Git, que gerencia os arquivos versionados.
-- **`.universal-files/`**: Diretório contendo os arquivos de configuração organizados.
+* `~/.universal-bare-repo`: repositório Git *bare*.
+* `~/.universal/`: pasta onde os dotfiles residem (gerenciada pelo bare).
+* Demais arquivos em `$HOME` podem ser rastreados conforme a necessidade.
 
----
+## ⚙️ Pré‑requisitos
 
-#### 🔗  **Alias para Facilitar o Uso**
+* **Git** instalado (`git --version`).
+* **Chave SSH** cadastrada no GitHub (veja as instruções em [https://docs.github.com/pt/authentication/connecting-to-github-with-ssh](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh)).
 
-Criamos o alias `config` para interagir com o repositório bare de maneira simplificada. Ele substitui os comandos longos do Git e permite gerenciar os dotfiles facilmente.
+## 🔗 Alias `config`
 
-Com isso, comandos como `config add`, `config commit` e `config push` podem ser usados para gerenciar os arquivos de configuração.
-
-
-**Gerenciamento de Configurações Pessoais com Git**
-
-Este repositório contém minhas configurações personalizadas (`dotfiles`) para diversas ferramentas e ambientes, versionadas com Git para facilitar a sincronização e a consistência entre diferentes máquinas.
-
-## ⚙️ **Pré-requisitos**
-
-Antes de começar, certifique-se de que você possui:
-
-- **Git** instalado. Você pode verificar com:
-
-- **Acesso SSH configurado** para o GitHub (ou outra plataforma Git que você utiliza). Siga as instruções [aqui](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh).
-
-## 🚀 **Configuração em uma Nova Máquina**
-
-Siga os passos abaixo para clonar e configurar os **dotfiles** nesta máquina.
-
-### 1. **Clonar o Repositório Bare**
-
-Abra o terminal e execute o seguinte comando para clonar o repositório bare diretamente no seu diretório home:
-
-```shell
-git clone --bare git@github.com:miguelsmuller/universal-dot-files.git $HOME/.universal-bare-repo
-```
-
-**O que isso faz:**
-
-- **`git clone --bare`**: Clona o repositório sem criar uma cópia de trabalho dos arquivos.
-- **`$HOME/.universal-bare-repo`**: Destino do repositório bare, armazenado em uma pasta oculta no seu diretório home.
-
-### 2. **Criar um Alias para Facilitar o Uso do Git**
-
-Para simplificar o uso do Git com o repositório bare, crie um alias. Adicione a seguinte linha ao final do seu arquivo de configuração do shell (`.zshrc`, `.bashrc`, etc.):
+Para facilitar o uso do Git com o bare, adicione o alias abaixo ao final do `~/.zshrc` ou `~/.bashrc`:
 
 ```shell
 alias config='/usr/bin/git --git-dir=$HOME/.universal-bare-repo --work-tree=$HOME'
 ```
 
-Após adicionar o alias, recarregue o shell para que as mudanças tenham efeito:
+Recarregue o shell para aplicar as alterações:
 
 ```shell
-source ~/.zshrc
-# ou
+source ~/.zshrc   # ou
 source ~/.bashrc
 ```
 
-### 3. **Fazer o Checkout dos Arquivos**
+---
 
-Execute o seguinte comando para extrair os arquivos versionados para os diretórios incluindo o `.universal`:
+## 🚀 Primeira instalação em uma máquina nova
 
-```shell
-config checkout
-```
+1. **Clonar o repositório bare**
 
-**Possível Problema:**
+   ```shell
+   git clone --bare git@github.com:miguelsmuller/universal-dot-files.git $HOME/.universal-bare-repo
+   ```
 
-Se alguns arquivos já existirem no diretório `.universal`, você receberá mensagens de erro indicando conflitos. Para resolver isso:
+2. **Adicionar o alias** (veja seção anterior) e recarregar o shell.
 
-1. **Mover os Arquivos Conflitantes Temporariamente:**
+3. **Extrair os arquivos**
 
-```shell
-mkdir -p ~/backup-dotfiles
-mv ~/.universal ~/.backup-dotfiles/
-```
+   ```shell
+   config checkout
+   ```
 
-2. **Fazer o Checkout Novamente:**
+   **Conflitos?** Se arquivos já existirem:
 
-```shell
-config checkout
-```
+   ```shell
+   mkdir -p ~/backup-dotfiles
+   mv ~/.universal ~/backup-dotfiles/
+   config checkout
+   ```
 
-### 4. **Configurar o Git para Ignorar Arquivos Não Monitorados**
+4. **Esconder arquivos não rastreados**
 
-Para evitar que o Git mostre todos os arquivos do diretório `.universal-files` que não estão sendo versionados, configure o Git para ocultar arquivos não monitorados:
+   ```shell
+   config config --local status.showUntrackedFiles no
+   ```
 
-```
-config config --local status.showUntrackedFiles no
-```
+5. **Conferir resultado**
 
-### 5. **Verificar a Restauração dos Dotfiles**
+   ```shell
+   ls -la ~/.universal
+   ```
 
-Confirme se os arquivos foram restaurados corretamente:
+6. **(Opcional) Remover backups**
 
-```shell
-ls -la ~/.universal
-```
-
-A pasta `.universal` deve estar presente com todos os subdiretórios e arquivos intactos.
-
-### 6. **(Opcional) Limpar Arquivos de Backup**
-
-Após confirmar que tudo está funcionando corretamente, você pode remover os backups dos arquivos conflitantes:
-
-```shell
-rm -rf ~/backup-dotfiles
-```
-
-## 🔄 **Atualizando os Dotfiles**
-
-Sempre que fizer alterações nos seus arquivos de configuração, siga estes passos para atualizar o repositório:
-
-1. **Adicionar as Mudanças:**
-
-```shell
-config add ~/.universal-files/dot-files
-config add ~/.universal-files/dictionaries
-```
-
-2. **Criar um Commit:**
-
-```shell
-config commit -m "Atualizar configurações dos dotfiles"
-```
-
-3. **Enviar as Mudanças para o Repositório Remoto:**
-
-```shell
-cofig push
-```
-
-
-## 🔒 **Gerenciando Informações Sensíveis**
-
-Evite versionar arquivos que contenham informações sensíveis, como senhas ou chaves de API. Adicione esses arquivos ao `.gitignore`:
-
-```shell
-config add ~/.universal/.gitignore
-echo ".env" >> ~/.universal/.gitignore
-config commit -m "Adicionar .env ao .gitignore"
-config push
-```
-
-## Outras informações
-
-### Encriptação
-
-Ferramentas como git-crypt permitem criptografar arquivos dentro do repositório.
+   ```shell
+   rm -rf ~/backup-dotfiles
+   ```
 
 ---
 
-### Force Reset
+## 🔄 Mantendo os dotfiles atualizados
+
+```shell
+# 1. Adicionar mudanças
+config add ~/.universal/dot-files
+config add ~/.universal/dictionaries
+config add .config/nvim
+
+# 2. Commitar
+config commit -m 'Atualizar configurações dos dotfiles'
+
+# 3. Enviar para o GitHub
+config push
+```
+
+---
+
+## 🪄 Atualizando o *git subtree* do Kickstart.nvim
+
+A pasta `~/.config/nvim` **não** é um submódulo; ela é um ***git subtree*** que aponta para [nvim‑lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). Assim todos os arquivos ficam visíveis no GitHub, e eu posso atualizar com:
+
+```bash
+# Buscar novidades do repositório upstream
+config fetch nvim
+
+# Mesclar na pasta .config/nvim
+config subtree pull --prefix=.config/nvim nvim main --squash -m "Update kickstart.nvim"
+
+# Enviar o novo commit
+config push
+```
+
+---
+
+## 🔒 Informações sensíveis
+
+Nunca versiono senhas, tokens ou arquivos `.env`. Para ignorá‑los:
+
+```shell
+echo '.env' >> ~/.universal/.gitignore
+config add ~/.universal/.gitignore
+config commit -m 'Adicionar .env ao .gitignore'
+config push
+```
+
+Quando necessário, utilizo [**git‑crypt**](https://github.com/AGWA/git-crypt) para criptografar conteúdos sigilosos.
+
+---
+
+## 💣 Force reset (use com cuidado)
 
 ```shell
 config fetch
 config reset --hard origin/main
 ```
 
-- **`checkout`**: Tenta extrair os arquivos versionados, mas pode falhar se houver conflitos ou arquivos existentes que impedem a restauração.
-- **`reset --hard`**: Alinha completamente o diretório de trabalho com o repositório remoto, forçando a restauração dos arquivos deletados.
+* `checkout`: tenta aplicar mudanças, mas pode falhar se houver conflitos.
+* `reset --hard`: sincroniza 100 % com o remoto, sobrescrevendo arquivos locais.
 
 ---
 
-### **README.md: Localização Local e no Repositório**
+## 📍 Localização do `README.md`
 
-A cada atualização do README.md estamos movendo ele para a $HOME e depois levando de volta para .uninversal
+Durante edições, copio o `README.md` para `$HOME` para facilitar ajustes e depois o devolvo à pasta correta (`~/.universal`). O histórico do Git registra esses movimentos.
+
+---
+
+Boa hackeada! 🚀
