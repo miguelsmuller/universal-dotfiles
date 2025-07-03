@@ -68,3 +68,19 @@ function reload-env {
 #fi
 
 
+
+############################
+# AutoInstall FiraCode Font 
+############################
+
+font="FiraCode"
+font_dir="$HOME/.local/share/fonts/$font"
+
+if [ ! -d "$font_dir" ] || [ -z "$(find "$font_dir" -iname '*.ttf' -o -iname '*.otf' 2>/dev/null)" ]; then
+    echo "Instalando a fonte $font..."
+    mkdir -p ~/.local/share/fonts
+    wget -O "/tmp/${font}.zip" "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
+    unzip -o "/tmp/${font}.zip" -d "$font_dir"
+    rm "/tmp/${font}.zip"
+    fc-cache -fv
+fi
