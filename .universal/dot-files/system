@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#
+# Reload the shell
 alias reload='exec "$SHELL"'
 
-#
+# Clear the terminal
 alias cls='clear'
 
-#
+# list globally installed npm packages
 alias npm-list='npm ls -g --depth 0'
 
 # list including hidden
@@ -24,7 +24,7 @@ alias llos='ls -la'
 # list including in columns with propertiesm, human readable and Sym Links
 alias lls='ls -l'
 
- # Alias vim to nvim for convenience
+# Alias vim to nvim for convenience
 alias vim='nvim'
 
 
@@ -32,6 +32,7 @@ alias vim='nvim'
 # Experimental Reload Env
 ##########################
 
+# Reloads the current Python virtual environment
 function reload-env {
     if [[ -z "${1}" ]]
     then
@@ -84,3 +85,43 @@ if [ ! -d "$font_dir" ] || [ -z "$(find "$font_dir" -iname '*.ttf' -o -iname '*.
     rm "/tmp/${font}.zip"
     fc-cache -fv
 fi
+
+
+
+############################
+# List Custom Aliases and Functions
+############################
+
+# List all custom aliases and functions from dot-files
+list-customs() {
+    local dir="$HOME/.universal/dot-files"
+    local file
+    for file in "$dir"/*; do
+        [[ -f "$file" ]] || continue
+
+        local header_printed=false
+        local prev=""
+
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            if [[ $line =~ ^alias ]] || [[ $line =~ ^function ]] || [[ $line =~ ^[[:alnum:]_]+\(\) ]]; then
+                if [[ $header_printed == false ]]; then
+                    printf '\n== %s ==\n' "$file"
+                    header_printed=true
+                fi
+
+                if [[ $prev =~ ^# ]]; then
+                    echo "$prev"
+                    printf '  %s\n' "$prev"
+                fi
+                # print the signature only
+                echo "$line"
+                printf '  %s\n' "$line"
+            fi
+            prev="$line"
+        done < "$file"
+
+        if [[ $header_printed == true ]]; then
+            echo
+        fi
+    done
+}
