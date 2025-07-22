@@ -4,4 +4,22 @@ alias up='docker compose -f docker-compose.yml -f docker-compose.local.yml up -d
 
 alias down='docker compose down --volumes --remove-orphans'
 
+function loggi-payout() {
+    kubectl exec -it $(kubectl get pods \
+    --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}' -n payout \
+    | grep ^payout-app) -n payout -- python manage.py shell_plus
+}
 
+
+function loggi() {
+    case "$1" in
+        payout)
+        loggi-payout "${@:2}"
+        ;;
+        
+        *)
+        # fallback: chama o binário real do sistema
+        command loggi "$@"
+        ;;
+    esac
+}

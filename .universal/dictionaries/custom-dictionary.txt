@@ -15,11 +15,13 @@ classpath
 cnae
 cnaes
 cnpj
+cnpjs
 conteudo
 costcenter
 datascience
 decrescimo
 doesnt
+Driv
 drivername
 dropoff
 enviroment
