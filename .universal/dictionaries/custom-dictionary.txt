@@ -16,8 +16,10 @@ cnae
 cnaes
 cnpj
 cnpjs
+colisions
 conteudo
 costcenter
+cpaste
 datascience
 decrescimo
 doesnt
@@ -41,6 +43,7 @@ hospedin
 httpclient
 httpx
 ipynb
+Jóias
 jsonable
 jupyter
 klass
@@ -100,6 +103,7 @@ samcli
 scaffolder
 Scaffolder
 sematica
+sepl
 shotener
 sonarqube
 sqlalchemy
@@ -112,6 +116,7 @@ timespec
 toogle
 unsubscription
 unwir
+unwire
 usefixtures
 uvicorn
 voucherify

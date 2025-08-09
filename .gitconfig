@@ -104,3 +104,5 @@
 	pretty = oneline
 [submodule]
 	recurse = true
+[remote]
+	pushDefault = origin
