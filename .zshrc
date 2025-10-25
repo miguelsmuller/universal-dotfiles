@@ -31,7 +31,21 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 ### START BREW
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if command -v brew >/dev/null 2>&1; then
+  eval "$(brew shellenv)" 2>/dev/null
+else
+  case "$OSTYPE" in
+    darwin*)
+      [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null
+      [[ -x /usr/local/bin/brew   ]] && eval "$(/usr/local/bin/brew shellenv)" 2>/dev/null
+      ;;
+    linux*)
+      [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null
+      [[ -x /linuxbrew/.linuxbrew/bin/brew       ]] && eval "$(/linuxbrew/.linuxbrew/bin/brew shellenv)" 2>/dev/null
+      ;;
+  esac
+fi
 
 ### START DOT-FILES
 export UNIVERSAL=.universal

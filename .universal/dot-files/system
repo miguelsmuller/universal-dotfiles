@@ -75,15 +75,32 @@ function reload-env {
 ############################
 
 font="FiraCode"
-font_dir="$HOME/.local/share/fonts/$font"
+# font_dir="$HOME/.local/share/fonts/$font"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    font_dir="$HOME/Library/Fonts/$font"
+else
+    font_dir="$HOME/.local/share/fonts/$font"
+fi
 
 if [ ! -d "$font_dir" ] || [ -z "$(find "$font_dir" -iname '*.ttf' -o -iname '*.otf' 2>/dev/null)" ]; then
     echo "Instalando a fonte $font..."
-    mkdir -p ~/.local/share/fonts
-    wget -O "/tmp/${font}.zip" "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
-    unzip -o "/tmp/${font}.zip" -d "$font_dir"
-    rm "/tmp/${font}.zip"
-    fc-cache -fv
+    mkdir -p "$font_dir"
+    tmp_file="/tmp/${font}.zip"
+    url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
+    if command -v wget >/dev/null 2>&1; then
+        wget -O "$tmp_file" "$url"
+    else
+        curl -L -o "$tmp_file" "$url"
+    fi
+    unzip -o "$tmp_file" -d "$font_dir"
+    rm "$tmp_file"
+
+    # Atualiza cache só no Linux
+    if [[ "$OSTYPE" != "darwin"* ]]; then
+        fc-cache -fv
+    fi
+
+    echo "Fonte $font instalada com sucesso."
 fi
 
 
