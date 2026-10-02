@@ -2,6 +2,7 @@ aiofiles
 antifraud
 asgi
 astype
+asyncio
 asyncpg
 authorizationtoken
 authtoken
@@ -89,6 +90,7 @@ pytest
 pytestmark
 pytorch
 pytz
+RABBITMQ
 rdflib
 rdfs
 recomendation
@@ -111,6 +113,7 @@ sqlalchemy
 stackable
 starlette
 tagmanager
+testcov
 thefuzz
 thumbor
 timespec
