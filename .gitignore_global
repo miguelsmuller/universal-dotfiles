@@ -10,5 +10,12 @@
 docker-compose.local.yml
 docker-compose.local.yaml
 
+**/AGENTS*.md
+.agents/
+
+# Codex skills are maintained outside this dotfiles repository.
+.codex/
+
+.DS_Store
 
 ~/.universal/dot-files/env-private

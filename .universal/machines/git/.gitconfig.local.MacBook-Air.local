@@ -1,0 +1,6 @@
+[user]
+    signingkey = E96FEB0058759457
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = /Users/miguelsmuller/.gitignore_global

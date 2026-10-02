@@ -6,7 +6,6 @@
 [core]
 	editor = vim
 	autocrlf = input
-	excludesfile = /home/miguel-neto/.gitignore_global
 	#pager = cat
 [pager]
 	branch = false
@@ -14,6 +13,15 @@
 	defaultBranch = main
 [push]
 	autoSetupRemote = true
+[pager]
+	branch = false
+    log = true
+[format]
+	pretty = oneline
+[submodule]
+	recurse = true
+[remote]
+	pushDefault = origin
 [alias]
     # [system] who am I? IT'S A ME, MARIO! :)
     me = config user.name
@@ -97,12 +105,3 @@
     prune = fetch -p
 
     update = rebase -i main
-[pager]
-	branch = false
-    log = true
-[format]
-	pretty = oneline
-[submodule]
-	recurse = true
-[remote]
-	pushDefault = origin
